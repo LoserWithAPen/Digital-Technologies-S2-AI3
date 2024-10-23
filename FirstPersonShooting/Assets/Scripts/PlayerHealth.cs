@@ -5,28 +5,21 @@ using Random = System.Random;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int playerHealth = 100;
-    [HideInInspector] public int originalPlayerHealth;
+    public float playerHealth = 100;
+    [HideInInspector] public float originalPlayerHealth;
     Random rand = new Random();
     [HideInInspector] public CharacterController Player;
     [HideInInspector] public bool dmgInv = false;
     [SerializeField] int invTime;
     Vector3 startPos;
+    public Shield shield;
 
     private void Awake()
     {
         originalPlayerHealth = playerHealth;
         startPos = transform.position;
         Player = gameObject.GetComponent("CharacterController") as CharacterController;
-    }
-
-    private void Update()
-    {
-        if (playerHealth <= 0)
-        {
-            playerHealth = originalPlayerHealth;
-            Die();
-        }
+        shield = GetComponent<Shield>();
     }
 
     void InvEnd()
@@ -34,11 +27,20 @@ public class PlayerHealth : MonoBehaviour
         dmgInv = false;
     }
 
-    public void PlayerTakeDamage(int amount)
+    public void PlayerTakeDamage(float amount)
     {
-        dmgInv = true;
-        playerHealth -= amount;
-        Invoke("InvEnd", invTime);
+        if (!shield.blocking)
+        {
+            dmgInv = true;
+            playerHealth -= amount;
+            Invoke("InvEnd", invTime);
+        }
+        if (playerHealth <= 0)
+        {
+            playerHealth = originalPlayerHealth;
+            Die();
+        }
+        ZeldaHealthScript.instance.SetCurrentHealth(playerHealth / 5);
     }
 
     void Die()

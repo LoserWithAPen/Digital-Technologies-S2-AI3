@@ -114,10 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  pTarget: 0
   maxhealth: 50
   health: 50
   collectable: {fileID: 2664783008101659646, guid: 893692c375fb85f479efe8727c05c821, type: 3}
-  target: {x: 0, y: 0, z: 0}
 --- !u!195 &2480110766444546563
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -155,5 +156,5 @@ MonoBehaviour:
   distanceToEnemy: 0.1
   canAttack: 1
   bulletPrefab: {fileID: 0}
-  bulletSpeed: 50
+  bulletSpeed: 25
   self: {fileID: 0}

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  range: 0.1
+  range: 1
   scoreValue: -1
   canAttack: 1
   self: {fileID: 0}

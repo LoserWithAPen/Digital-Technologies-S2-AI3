@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 2.4f;
     public float gravity = -9.81f;
 
+    [HideInInspector] public Vector3 groundpos;
     public Transform ground;
     public float distanceToGround = 0.4f;
     public LayerMask groundMask;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     {
 		if (isGrounded() && velocity.y < 0){
 			velocity.y = -2f;
+            groundpos = transform.position;
+            Debug.Log(groundpos.x + ", " + groundpos.y + ", " + groundpos.z);
 		}
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move(velocity * Time.deltaTime);

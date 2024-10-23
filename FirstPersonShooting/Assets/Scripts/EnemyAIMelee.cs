@@ -11,9 +11,7 @@ public class EnemyAIMelee : MonoBehaviour
     NavMeshAgent agent;
     public int damage = 10;
 
-    Transform enemy; // Ground check empty goes in here
-    public float range = 0.1f; // How close the ground needs to be to register
-    //LayerMask enemyMask = LayerMask.GetMask("Enemy");
+    public float range = 10f;
     public int scoreValue = -1;
     public bool canAttack = true;
     public Target self;
@@ -24,11 +22,10 @@ public class EnemyAIMelee : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 3f;
         agent.stoppingDistance = 2.5f;
-        enemy = gameObject.transform;
 
         Player = GameObject.Find("Player").transform;
     }
-    // Update is called once per frame
+    
     void Update()
     {
         agent.SetDestination(self.target);
@@ -73,6 +70,5 @@ public class EnemyAIMelee : MonoBehaviour
         {
             return false;
         }
-        //return Physics.CheckSphere(Player.position, distanceToEnemy, enemyMask);
     }
 }

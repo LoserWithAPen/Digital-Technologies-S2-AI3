@@ -57,6 +57,7 @@ public class DoorCollider : MonoBehaviour
     {
         if (other.gameObject.tag == ("Player"))
         {
+            text.text = ("");
             unlock = false;
             isUp = true;
         }
